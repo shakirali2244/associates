@@ -1,5 +1,7 @@
+
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 /**
  * An abstract cell, moves randomly around the blood stream
@@ -25,6 +27,7 @@ public class Cell {
     
     /** the duration of frame to keep the current direction */
     private int duration = 120;
+    
 
     public Cell(int x, int y, int size, Color color) {        
         this.x = x;
@@ -37,7 +40,7 @@ public class Cell {
      * The move method move the cell to the next location, based on 
      * direction, speed, and duration
      */
-    public void move() {
+    public void move(ArrayList<Cell> cells, ArrayList<Cell> deleteCells, ArrayList<Cell> addCells) {
         if ((frame++%getDuration())==0) {
             changeDirection();
         }
@@ -52,7 +55,7 @@ public class Cell {
                 getY() < getSize() ||
                 getY() > Application.HEIGHT-getSize()) {
             setDirection(getDirection() + Math.PI/2);
-        }        
+        }
     }
     
     /**
@@ -75,6 +78,7 @@ public class Cell {
 
     // Utility methods
     
+        
     /**
      * Calculates the distance between cells     
      * @param The cell to compare this to
@@ -85,9 +89,9 @@ public class Cell {
     }
     
     /**
-     * Calculates the angle between cells -- turn the current cell's direction
-     * to point toward the cell provided in the parameter.
-     * @param cell     
+     * Calculates the angle between cells
+     * @param cell
+     * @return 
      */
     public void turnToFace(Cell cell) {
         setDirection(Math.atan2(cell.getX()-getX(), cell.getY()-getY()));

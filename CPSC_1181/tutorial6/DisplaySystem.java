@@ -1,3 +1,5 @@
+
+
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -41,7 +43,7 @@ import javax.swing.JPanel;
  */
 public class DisplaySystem extends JFrame {
     
-    private JPanel canvas;
+    private Canvas canvas;
     private ArrayList<DrawableObject> drawableObjects = new ArrayList<DrawableObject>();
     private HashMap<Object, DrawableObject> drawableMap = new HashMap<Object, DrawableObject>();
     private ArrayList<Object> removeQueue = new ArrayList<Object>();
@@ -56,12 +58,12 @@ public class DisplaySystem extends JFrame {
     public DisplaySystem(final int width, final int height) {
         this.width = width;
         this.height = height;
-        canvas = new JPanel() {
+        canvas = new Canvas() {
             BufferedImage bm = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D buffer = bm.createGraphics();
+        	Graphics2D buffer = bm.createGraphics();
         	
             @Override
-            public void paintComponent(Graphics g) {
+            public void paint(Graphics g) {
             	buffer.clearRect(0, 0, width, height);
                 synchronized(DisplaySystem.this) {                	
                     for (DrawableObject drawable: drawableObjects) {                                             
@@ -87,7 +89,7 @@ public class DisplaySystem extends JFrame {
         this.setVisible(true);
     }
     
-    public JPanel getCanvas() {
+    public Canvas getCanvas() {
         return canvas;
     }
     
@@ -192,7 +194,7 @@ public class DisplaySystem extends JFrame {
     
     public void refresh(int delay) {
         try {
-            canvas.repaint(100);
+            canvas.repaint();
             processRemoveQueue();
             Thread.sleep(delay);
         } catch (InterruptedException ex) {

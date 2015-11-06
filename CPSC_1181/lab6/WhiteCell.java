@@ -1,6 +1,3 @@
-package lab6;
-
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 

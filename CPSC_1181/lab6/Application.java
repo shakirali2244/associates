@@ -1,7 +1,3 @@
-package lab6;
-
-
-
 import java.awt.Color;
 import java.util.ArrayList;
 

@@ -6,9 +6,9 @@
  */
 #include "Deque.h"
 
-int main(){
-	Deque test;
-}
+//int main(){
+//	Deque test;
+//}
 
 
 

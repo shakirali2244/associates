@@ -15,8 +15,8 @@ class Deque{
 		Deque();
 		Node* cons(int key, Node* next);
 		bool isEmpty();
-		void pushFront();
-		void pushBack();
+		void pushFront(int key);
+		void pushBack(int key);
 		Node* popFront();
 		Node* popBack();
 		Node* peekfront();
@@ -26,6 +26,6 @@ class Deque{
 	private:
 		Node* head;
 		Node* tail;
-}
+};
 
 

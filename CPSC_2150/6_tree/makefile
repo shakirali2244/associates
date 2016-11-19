@@ -3,8 +3,8 @@ VERSION = -std=c++11
 CFLAGS = -pedantic -Wall -Wextra $(VERSION) $(DEBUG)
 LFLAGS = -Wall $(VERSION) $(DEBUG)
 
-INCS = tree.h 
-SRCS = tree.cpp \
+INCS = Tree.h 
+SRCS = Tree.cpp \
 testTree.cpp
 
 OBJS = $(SRCS:.cpp=.o)

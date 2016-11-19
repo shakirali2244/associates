@@ -1,36 +1,39 @@
+// Shakir Ali , 100268078
+//CPSC 2150, Assignment 6
+//Polynomial in Binary Search Tree
+//
+// bugs  -  degreeCoeff returns 0 if degree not found
+// references  - Text Book /
+
 #include <iostream>
 #include "Tree.h"
 
 using namespace std;
 
 int main(){
-	Tree t;
+	Tree t1;
+	Tree t2;
+	cin >> t1;
+	cin >> t2;
 	
-	cout <<  t.isZero() <<endl;
-	//cout <<  t1.isZero() <<endl;
-	t.add(0,1);
-	t.add(6,2);
-	t.add(-5,1);
-	t.add(1,4);
+	int eval;
+	int degreeCoeff;
+	cin >> eval;
+	cin >> degreeCoeff;
 	
-	//t1.add(1,-4);
-	//t1.add(-5,6);
-	
-	//Tree A = ;
-	
-	
-	Tree t1(t);
-	
-	cout << t1.getTree()->coeff;
-	
-	//cout << t << endl << t1 << endl << endl;	
-	//cout << t.evaluate(2) << " "<<  t.evaluate(-5)  << endl;
-	
-	//cout << t.degree() << " "<<  t.degreeCoeff()  << endl;
-	
-	//t.deleteTree();
-	
-	//
-	
+	cout << " Polynomials are as follows  \n";
+	cout  << t1 t<< endl << t2 << endl;
+	cout  << " isZero = " << endl << t1.isZero() << endl;
+	cout  << " isZero = " << endl << t2.isZero() << endl;
+	cout  << " evaluate("<<eval<<") = " << endl << t1.evaluate(eval)<< endl;
+	cout  << " evaluate("<<eval<<") = " << endl << t2.evaluate(eval) << endl;
+	cout  << " degree = " << endl << t1.degree() << endl;
+	cout << " degree = " << endl << t2.degree() << endl;
+	cout  <<  "degreeCoeff("<<degreeCoeff << ") = " << endl << t1.degreeCoeff(degreeCoeff) << endl; 
+	cout  <<  "degreeCoeff("<<degreeCoeff << ") = " << endl << t2.degreeCoeff(degreeCoeff) << endl; 
+	Tree tmp =  t1+t2;
+	cout << " t1 + t2 = "<< endl;
+	cout << tmp;
+	cout << endl;	
 }
 	

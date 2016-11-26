@@ -1,0 +1,42 @@
+d1.popBack() = INVALID
+INVALID expression, Not enough numbers
+d3.peekBack() = INVALID
+INVALID expression, Not enough numbers
+d3.isEmpty() =  1
+1
+d1.peekFront() = 1
+1
+d1.popFront() = 1
+1
+d1.popBack() = 2
+2
+d1.peekBack() = 11
+11
+d2.peekFront() = 2
+2
+d2.popFront() = 2
+2
+d2.peekBack() = 1
+1
+d2.popBack() = 1
+1
+d2.size() = 0
+0
+d2.peekFront() = INVALID
+INVALID expression, Not enough numbers
+d3.popFront() = 66
+66
+d3.size() = 1
+1
+d4.size() = 2
+2
+d3.peekFront() = -22
+-22
+d4.peekFront() = 66
+66
+d4.popFront() = 66
+66
+d4.popFront() = -22
+-22
+d4.popFront() = INVALID
+INVALID expression, Not enough numbers

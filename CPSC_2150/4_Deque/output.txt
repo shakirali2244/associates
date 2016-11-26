@@ -1,0 +1,8 @@
+5 11 * 5- =50
+5 6 7 10+ +-=-18
+3 2 4 ^ * 5 3 2 ^ * 4 2^ 3 5 * -+ + =94
+  123   456 321 ** =18004248
+2 16 ^ =65536
+Math error, cannot divide by 0
+INVALID expression, Not enough numbers
+INVALID expression, Too many numbers

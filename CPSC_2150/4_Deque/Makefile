@@ -7,8 +7,7 @@ INCS = Deque.h \
 	Calculator.h
 SRCS = Deque.cpp \
 	Calculator.cpp \
-	testCalculator.cpp \
-	testDeque.cpp
+	testCalculator.cpp 
 OBJS = $(SRCS:.cpp=.o)
 EXEC = testCalculator
 

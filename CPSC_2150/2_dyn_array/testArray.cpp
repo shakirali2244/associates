@@ -15,13 +15,14 @@ int main(){
 	//l2.reverse();
 	l2.printList(cout);
 	l2.remove('a');
-	cout << "l2.search('a')" << l2.search('a') << endl;
+	l2.printList(cout);
+	cout << "l2.search('4')" << l2.search('4') << endl;
 	l2.printList(cout);
 	l2.remove('a');
 	cout << "l2.search('a')" << l2.search('a') << endl;
 	l2.printList(cout);
-	cout << "l2.remove('a')" << l2.remove('a') << endl;
-	cout << "l2.remove('a')" << l2.remove('a') << endl;
+	//cout << "l2.remove('a')" << l2.remove('a') << endl;
+	//cout << "l2.remove('a')" << l2.remove('a') << endl;
 	cout << "l2.search('a')" << l2.search('a') << endl;
 	//cout << "l1.isEmpty() = " << l1.isEmpty() <<" l1.length() = " <<  l1.length() << endl;
 	cout << "l2.isEmpty() = " << l2.isEmpty() <<" l2.length() = " <<  l2.length() << endl;	

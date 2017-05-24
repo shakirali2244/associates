@@ -7,9 +7,9 @@ using namespace std;
 Array::Array(){
 	index = 0;
 	head = 0;
-	free = 0;
+	free = NULLPOINTER;
 	list = new Node[9999];
-	list[index] = cons('\0',NULLPOINTER);
+	list[index] = Node {'\0', NULLPOINTER};
 }
 
 bool Array::isEmpty(){
@@ -27,10 +27,27 @@ int Array::length(){
 }
 
 bool Array::cons(char x){
-	if (length() <=1){
-		head = Node{x, head};
+	if ((length() <=1 && list[head].item == '\0') || head == NULLPOINTER){
+		if (head == NULLPOINTER){
+			head++;
+		}
+		list[head] = Node{x, NULLPOINTER};
+		index++;
 		return true;
 	}
+	if (free < head && free != NULLPOINTER){
+		int tmp = free;
+		free = list[free].next;
+		cout << "free , head " << free << head << endl;
+		list[tmp] = Node{x, head};
+		head = tmp;
+	}else{
+		int curr = head;
+		shift(head,x);
+		return true;
+	}
+}
+/*
 	if(free != NULLPOINTER && free != 0){
 		int tmp = free;
 		free = list[free].next;
@@ -45,22 +62,31 @@ bool Array::cons(char x){
 		list[tmp].item = x;
 		list[tmp].next = head;
 		head = tmp;
-	}else{
-		int curr = head;
-		shift(head,x);
-	}
-		
-	
-}
-
+*/
 void Array::shift(int in, char x){
 	if (list[in].next == NULLPOINTER){
 		list[in].next = index;
-		list[index] = Node{x , NULLPOINTER};
+		char tmp = list[in].item;
+		list[in].item = x;
+		list[index] = Node{tmp , NULLPOINTER};
+		index++;
 		return;
 	}
-	char tmp = list[index].item;
-	list[index].item = x;
+	if (in+1 == free){
+		char tmpC = list[in].item;
+		char nxt = list[in].next;
+		list[in].next = in+1;
+		list[in].item = x;
+		free = list[free].next;
+		list[in+1].item = tmpC;
+		list[in+1].next = nxt;
+		return;
+	}
+	char tmp = list[in].item;
+	cout << tmp  << endl ;
+	list[in].item = x;
+	shift(list[in].next,tmp);
+}
 	
 	
 
@@ -68,15 +94,18 @@ bool Array::append(char a){
 	if ( a == '\0'){
 		return false;
 	}
-	if (index == 0){
-		list[index] = Node {a, NULLPOINTER};
+	if ((length() <=1 && list[head].item == '\0') || head == NULLPOINTER){
+		if (head == NULLPOINTER){
+			head++;
+		}
+		free =  NULLPOINTER;
+		list[head] = Node{a, NULLPOINTER};
 		index++;
 		return true;
-	}
-	else{
+	}else{
 		list[index] = Node {a,NULLPOINTER};
 		int tmp = head;
-		while(list[tmp].next != nullptr){
+		while(list[tmp].next != NULLPOINTER){
 			tmp = list[tmp].next;
 		}
 		list[tmp].next = index;
@@ -134,7 +163,7 @@ bool Array::remove(char a){
 }
 
 void Array::addtoFree(int index){
-	if(free == 0){
+	if(free == NULLPOINTER){
 		free = index;
 		return;
 	}
@@ -179,6 +208,35 @@ void Array::addtoFree(int index){
 	}
 }
 */
+
+void Array::reverse(){
+	if (length() <= 1) return;
+	if (length() == 2){
+		Node* tmp = list;
+		list = list->next;
+		list->next = tmp;
+		return;
+		char tmp = list[head].item;
+		head = list[head].next;
+	}
+	
+	Node* previous = list;
+	Node* head = previous -> next;
+	Node* front= head->next;
+	
+	previous->next = nullptr;
+	while(head->next != nullptr){
+		head->next = previous;
+		Node* tmp = front->next;
+		front->next = head; 
+		previous = head;
+		head = front;
+		front = tmp;
+	}
+	list = head;
+	return;
+}
+
 bool Array::search(char a){
 	if (a == '\0'){
 		return false;
@@ -188,7 +246,7 @@ bool Array::search(char a){
 		if( a == list[i].item ){
 			return true;
 		}
-		cout << list[i].item << endl;
+		//cout << list[i].item << endl;
 		i = list[i].next;
 	}
 	return false;
@@ -243,7 +301,7 @@ void Array::printList(std::ostream& fout) {
 	fout << "[ ";
 	int tmp = head;
 	while (tmp != NULLPOINTER){
-		fout << list[tmp].item ;
+		fout << "{"<<tmp<<"}" <<  list[tmp].item ;
 		if (list[tmp].next != NULLPOINTER)
 		      fout << ", ";
 		tmp = list[tmp].next;

@@ -15,7 +15,8 @@ class Array{
 		Array();
 		bool isEmpty();
 		int length();
-		bool cons(char x, int next);
+		bool cons(char x);
+		void shift(int in, char x);
 		bool append(char a);
 		bool remove(char a);
 		void addtoFree(int index);

@@ -11,31 +11,49 @@ int main(){
 	
 	cout << "receiving ";
 	Queue(tail,800);
-	cout << "P1(800)" ;
+	cout << "P1(800) " ;
 	printList(a);
-
 	
-	int n = 20;
+	int finished = 0;
+	int added = 0;
 	
-	for (int i = 0; i < n; i++){
+	int n = 7;
+	int init = 1;
+	
+	while (n >0){
 		
 		int probab = (rand() % 4) + 1;
-		cout << probab << endl;
+		//cout << probab << endl;
 		
 		if (probab != 1){
-			cout << "processing ";
+			cout << init<< " processing ";
 			Node* q = Deque(a);
 			cout << "P"<<q->name<<"("<<q->val<<") ";
 			q->val -= 100;
-			Queue(tail,q);
-			printList(a);
+			if(q->val != 0){
+				Queue(tail,a,q);
+				printList(a);
+			}else{
+				finished++;
+			}
+			init++;
+			n--;
+			
 		}else{
 			cout << "receiving ";
-			Queue(tail,800);
-			cout << "P1(800)" ;
+			int time = rand() % 5 + 1;
+			Queue(tail,time*100);
+			cout << "P" << tail ->name << "(" << tail->val << ") ";
 			printList(a);
+			added++;
 		}
 	}
+	
+	init --;
+	cout << init << "slices," << added << " sent to CPU, " << finished << " terminated, " << getSize(tail) << "still in cpu " << endl;
+	cout << (float)init/(float)(init + added)*(float)100 << " % of CPU time was spent processing jobs "<< endl;
+	cout << (float)added/(float)(init + added)*(float)100 << " % of CPU time was spent on adding new jobs"<< endl;
+	
 			
 	
 	/*Queue(tail,400);

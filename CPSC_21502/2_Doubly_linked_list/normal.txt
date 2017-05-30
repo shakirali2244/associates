@@ -1,0 +1,6 @@
+An algorithm specifies a series of steps that perform a particular computation or task. Algorithms were originally born as part of mathematics – the word “algorithm” comes from the Persian writer Muammad ibn Musa al-Khwarizmi, – but currently the word is strongly associated with computer science. 
+Studying algorithms is a fundamental part of computer science. There are several different characteristics of an algorithm that are useful to know:
+Does an algorithm actually exist to perform a given task?
+If someone proposes an algorithm to solve a task, are we sure that the algorithm works for all possible inputs?
+How long does the algorithm take to run? How much memory space does it require?
+Once we know it’s possible to solve a problem with an algorithm, a natural question is whether the algorithm is the best possible one. Can the problem be solved more quickly?

@@ -44,10 +44,11 @@ void Queue(Node* &tail, int val){
 	}
 }
 
-void Queue(Node* &tail, Node* val){
+void Queue(Node* &tail, Node*& head, Node* val){
 	size++;
 	if (size-1 == 0){ //insert val t0 first node
 		tail = val;
+		head = val;
 		//cout << "adding to first " << val->val  << endl;
 	}else{ // add newer node to the left and add links
 		//cout << "adding to left " << val->val  << endl;
@@ -63,7 +64,9 @@ Node* Deque(Node* &head){
 		return nullptr;
 	}
 	Node* tmp = head;
+	
 	head = head-> left;
+	
 	
 	tmp->left = nullptr;
 	tmp->right = nullptr;
@@ -73,9 +76,17 @@ Node* Deque(Node* &head){
 	
 }
 
-		
-		
+int getSize(Node* head){
+	int ret = 0;
+	Node* tmp = head;
+	while(tmp != nullptr){
+		ret++;
+		tmp = tmp->left;
+	}
+	return ret;
+}
 
+	
 void printList(Node *list){
 	Node* tmp = list; //copy reference to head so that it is not modified by mistake
 	while(tmp != nullptr){

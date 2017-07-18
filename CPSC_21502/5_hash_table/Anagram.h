@@ -1,5 +1,6 @@
 #include<string>
 #include<algorithm>
+#include<iostream>
 using namespace std;
 class Anagram{
 	public:
@@ -9,5 +10,9 @@ class Anagram{
 			word = in;
 			key = in;
 			sort(key.begin(),key.end());
+		}
+		Anagram(){
+			word = "";
+			key = "";
 		}
 };

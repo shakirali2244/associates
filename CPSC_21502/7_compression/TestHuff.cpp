@@ -31,42 +31,39 @@ int* countChars(/*std::priority_queue<HuffNode> &in*/ string filename){
 	return probs;
 	}
 	
-std::priority_queue<HuffNode*> BuildHuffTree(int* probs){
-	std::priority_queue<HuffNode*> ret;
+std::priority_queue<HuffNode> BuildHuffTree(int* probs){
+	std::priority_queue<HuffNode> ret;
 	for (int i = 32;i < ASCII_RANGE; i++){
-		HuffNode* a;
-		a->val = char(i);
-		a->freq = probs[i];
+		HuffNode a;
+		a.val = char(i);
+		a.freq = probs[i];
 		ret.push(a);
 	}
 	
 	while(ret.size() >= 2){
-		HuffNode* parent;
+		HuffNode parent;
 		
-		HuffNode* left;
-		left->val = ret.top()->val;
-		left->freq = ret.top()->freq;
-		left->left = ret.top()->left;
-		left->right = ret.top()->right;
-		
-		parent->left = left;
+		HuffNode* left = new HuffNode;
+		left->val = ret.top().val;
+		left->freq = ret.top().freq;
+		left->left = ret.top().left;
+		left->right = ret.top().right;
 		
 		ret.pop();
 		
-		HuffNode* right;
-		right->val = ret.top()->val;
-		right->freq = ret.top()->freq;
-		right->left = ret.top()->left;
-		right->right = ret.top()->right;
-		
-		parent->right = ret.top();
+		HuffNode* right = new HuffNode;
+		right->val = ret.top().val;
+		right->freq = ret.top().freq;
+		right->left = ret.top().left;
+		right->right = ret.top().right;
 		
 		ret.pop();
 		
-		parent->freq = parent->left->freq + parent->right->freq;
+		parent.left = left;
+		parent.right = right;
 		
-		//cout << "pushing " << parent->freq << " left " << parent->left->freq <<
-		//" right " << parent->right->freq << endl;
+		parent.freq = left->freq + right->freq;
+		
 		
 		ret.push(parent);
 		
@@ -99,7 +96,7 @@ void print(HuffNode* in){
 int main(){
 	
 	int* probs;
-	std::priority_queue<HuffNode*> huffTree;
+	std::priority_queue<HuffNode> huffTree;
 	
 	//step 1
 	string filename ="./input.txt";
@@ -112,11 +109,16 @@ int main(){
 	// step 2
 	huffTree = BuildHuffTree(probs);
 	
-
+	HuffNode tmp;
 	
-	//print(huffTree.top());
+	tmp.val = huffTree.top().val;
+	tmp.freq = huffTree.top().freq;
+	tmp.left = huffTree.top().left;
+	tmp.right = huffTree.top().right;
+	
+	print(&tmp);
 	while(!huffTree.empty()){
-		cout << "(" <<  huffTree.top()->val<< ") " << huffTree.top()->freq << endl;
+		cout << "(" <<  huffTree.top().val<< ") " << huffTree.top().freq << endl;
 		 huffTree.pop();
 	}
 	
